@@ -39,5 +39,3 @@ yarn-debug.log*
 .DS_Store
 Thumbs.db
 
-firebase.js
-context

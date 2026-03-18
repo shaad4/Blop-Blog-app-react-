@@ -4,7 +4,7 @@ import app from "../firebase";
 import{
     getAuth,
     createUserWithEmailAndPassword,
-    signInWithEamilAndPassword,
+    signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
 } from "firebase/auth"
@@ -23,7 +23,7 @@ export function AuthProvider({children}){
 
     //login
     const login = (email, password) => {
-        return signInWithEamilAndPassword(auth, email, password);
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     //logout
@@ -50,5 +50,5 @@ export function AuthProvider({children}){
 
 //custom hook
 export function useAuth(){
-    return useContext(AuthProvider)
+    return useContext(AuthContext)
 }

@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Ensure standard variables are available */
+:root {
+  --bg-deep: #030712;        
+  --bg-surface: rgba(17, 24, 39, 0.7); 
+  --accent: #63d9f1;          
+  --text-main: #f8fafc;       
+  --text-muted: #94a3b8;     
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+.details-container {
+  width: 100%;
+  max-width: 800px; /* Narrower for better reading width */
+  margin: 0 auto;
+  padding: 140px 24px 80px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Back Link Styling */
+.back-link {
+  color: var(--accent) !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+  text-decoration: none !important;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.back-link:hover {
+  transform: translateX(-5px);
+}
+
+/* The Content Card */
+.details-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 32px;
+  padding: 60px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+}
+
+.details-category {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.details-title {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: var(--text-main);
+}
+
+.details-meta {
+  margin-bottom: 30px;
+}
+
+.author-badge {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.details-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+/* Typography for the Blog Body */
+.details-body {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #cbd5e1; /* Slightly softer white for long reading */
+  white-space: pre-wrap; /* Keeps line breaks from the textarea */
+}
+
+.details-footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Center Content for Loader */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .details-card {
+    padding: 30px 20px;
+  }
+  .details-title {
+    font-size: 2.2rem;
+  }
+}

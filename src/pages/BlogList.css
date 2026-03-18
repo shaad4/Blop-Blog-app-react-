@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-deep: #030712;        
+  --bg-surface: rgba(17, 24, 39, 0.7); 
+  --accent: #63d9f1;          
+  --accent-hover: #2bd7f9;    
+  --text-main: #f8fafc;       
+  --text-muted: #94a3b8;     
+  --border: rgba(255, 255, 255, 0.08);
+  --input-bg: rgba(0, 0, 0, 0.3);
+  --accent-glow: rgba(99, 217, 241, 0.2); 
+}
+
+/* 1. GLOBAL RESET - Fixes the blue link issue once and for all */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important; /* Prevents browser blue/purple links */
+}
+
+/* 2. THE PAGE WRAPPER */
+.page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--bg-deep) !important;
+  background-image: 
+    radial-gradient(circle at 0% 0%, rgba(99, 217, 241, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(17, 24, 39, 1) 0%, transparent 40%) !important;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-main);
+}
+
+/* 3. FLOATING NAV - Fixes spacing and alignment */
+.floating-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  background: rgba(15, 23, 42, 0.8) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between; /* Pushes Logo left and Links right */
+  align-items: center;
+  z-index: 10000;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.nav-logo {
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--accent) !important;
+  letter-spacing: -1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px !important; /* Forces space between Feed and Add Blog */
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted) !important;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent) !important;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.nav-btn-outline {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent) !important;
+}
+
+/* 4. FEED CONTAINER - Fixes "Squashed to Left" issue */
+.feed-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto !important; /* CENTERS THE ENTIRE FEED */
+  padding: 140px 24px 60px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the titles */
+}
+
+.feed-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* 5. BLOG GRID - Fixes the list format */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 30px;
+  width: 100%; /* Ensures grid takes full container width */
+}
+
+.blog-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.blog-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+.blog-excerpt {
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+.blog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.author-id {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.read-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main) !important;
+}
+
+.read-link:hover {
+  color: var(--accent) !important;
+}
+
+/* 6. EDITOR CONTAINER (Add/Edit Page Fix) */
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px 40px 20px;
+}
+
+.editor-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(24px);
+  padding: 48px;
+  border-radius: 32px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid var(--border);
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover{
+    background: #9f1313;
+}
+
+.edit-btn {
+  background: #3b82f6; /* blue */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 8px;
+  transition: 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #2563eb;
+}

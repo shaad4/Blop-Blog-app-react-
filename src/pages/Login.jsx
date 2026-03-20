@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login(){
     const {signup, login} = useAuth();
-    const naviagte = useNavigate();
+    const navigate = useNavigate();
 
 
     const [email, setEmail] = useState("");
@@ -44,7 +44,7 @@ export default function Login(){
         try{
             await login(email,password);
             toast.success("Login successfull")
-            naviagte("/");
+            navigate("/");
         }catch(error){
             toast.error(error.message)
         }
@@ -89,7 +89,7 @@ export default function Login(){
             <div className="divider">
               <span>or</span>
             </div>
-            <button onClick={()=>naviagte("/signup")} className="btn btn-secondary">
+            <button onClick={()=>navigate("/signup")} className="btn btn-secondary">
               Create an account
             </button>
           </div>

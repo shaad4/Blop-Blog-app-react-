@@ -13,16 +13,34 @@ export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSignup = async () => {
-        try{
-            await signup(email,password);
-            toast.success("Signup successful")
-        }catch (error){
-            toast.error(error.message);
-        }
+    const validate = () => {
+    if (!email) {
+        toast.error("Email required");
+        return false;
     }
 
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        toast.error("Invalid email format");
+        return false;
+    }
+
+    if (!password) {
+        toast.error("Password required");
+        return false;
+    }
+
+    if (password.length < 6) {
+        toast.error("Password must be at least 6 characters");
+        return false;
+    }
+
+    return true;
+    };
+
+
     const handleLogin = async () => {
+      if (!validate()) return;
+
         try{
             await login(email,password);
             toast.success("Login successfull")
@@ -37,8 +55,8 @@ export default function Login(){
       <nav className="floating-nav">
         <div className="nav-logo">Blop </div>
         <div className="nav-links">
-         
-         
+        <button className="nav-btn-outline" onClick={() => navigate("/signup")}>Signup</button>
+
         </div>
       </nav>
 
@@ -65,13 +83,13 @@ export default function Login(){
           </div>
 
           <div className="button-stack">
-            <button onClick={handleLogin} className="btn btn-primary">
+            <button onClick={handleLogin} disabled={!email || password.length < 6} className="btn btn-primary">
               Login
             </button>
             <div className="divider">
               <span>or</span>
             </div>
-            <button onClick={handleSignup} className="btn btn-secondary">
+            <button onClick={()=>naviagte("/signup")} className="btn btn-secondary">
               Create an account
             </button>
           </div>

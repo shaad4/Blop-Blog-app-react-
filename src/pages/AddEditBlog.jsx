@@ -15,6 +15,30 @@ export default function AddEditBlog(){
 
     const { id } = useParams();
 
+    const validate = () => {
+    if (!title || !title.trim()) {
+        toast.error("Title is required");
+        return false;
+    }
+
+    if (title.length < 5) {
+        toast.error("Title must be at least 5 characters");
+        return false;
+    }
+
+    if (!content || !content.trim()) {
+        toast.error("Content is required");
+        return false;
+    }
+
+    if (content.length < 20) {
+        toast.error("Content must be at least 20 characters");
+        return false;
+    }
+
+    return true;
+    };
+
     useEffect(()=>{
         if (!id) return;
 
@@ -44,9 +68,8 @@ export default function AddEditBlog(){
 
 
     const handleSubmit = async () => {
-        if (!title || !content) {
-            return toast.error("Please fill in all fields");
-        }
+        if(!validate()) return;
+
         if (!user) {
             return toast.error("Login required");
         }
@@ -82,7 +105,7 @@ export default function AddEditBlog(){
     };
 
     const handleLogout = async () => {
-        try{gYDGLLijJ17o7EKFVIz
+        try{
             await logout();
             toast.success("Logged Out");
             navigate("/login")

@@ -7,6 +7,7 @@ import BLogList from "./pages/BLogList";
 import AddEditBlog from "./pages/AddEditBlog";
 import BlogDetails from "./pages/BlogDetails";
 import ProtectedRoute from "./components/ProtectedRoutes";
+import Signup from "./pages/Signup";
 
 function App(){
   const {user, logout} = useAuth();
@@ -18,6 +19,7 @@ function App(){
 
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={
           <ProtectedRoute>
              <BLogList />

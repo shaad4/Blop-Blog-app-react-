@@ -58,15 +58,22 @@ export default function BLogList() {
             toast.error(error.message);
         }
     }
+
+    const myBlogs = blogs.filter((blog) => blog.userId === user?.uid);
+    const otherBlogs = blogs.filter((blog) => blog.userId !== user?.uid);
    
 
-  return (
+ return (
     <div className="page-wrapper">
         <nav className="floating-nav">
-        <div className="nav-logo" style={{color: '#63d9f1', fontWeight: 'bold'}}>Blop</div>
+        <div className="nav-logo" style={{ color: '#63d9f1', fontWeight: 'bold' }}>
+            Blop
+        </div>
         <div className="nav-links">
             <Link to="/add">Add Blog</Link>
-            <button className="nav-btn-outline" onClick={handleLogout}>Logout</button>
+            <button className="nav-btn-outline" onClick={handleLogout}>
+            Logout
+            </button>
         </div>
         </nav>
 
@@ -74,29 +81,56 @@ export default function BLogList() {
         <h1 className="title">Latest Stories</h1>
         <p className="subtitle">Discover perspectives from the community</p>
 
+        {/* ✅ MY BLOGS */}
+        <h2 className="section-title">My Blogs</h2>
         <div className="blog-grid">
-            {blogs.map((blog) => (
-            <div key={blog.id} className="blog-card">
+            {blogs
+            .filter((blog) => blog.userId === user?.uid)
+            .map((blog) => (
+                <div key={blog.id} className="blog-card">
                 <h3 className="blog-title">{blog.title}</h3>
-                <p className="blog-excerpt">{blog.content.slice(0, 160)}</p>
-                <div className="blog-footer">
-                {/* <span className="author-id">ID: {blog.userId?.substring(0, 4)}</span> */}
-                <Link to={`/blog/${blog.id}`} className="read-link">Read Entry →</Link>
+                <p className="blog-excerpt">
+                    {blog.content.slice(0, 160)}
+                </p>
 
-                {user && user.uid === blog.userId && (
-                    <button className="delete-btn" onClick={() => handleDelete(blog.id)}>
-                        Delete
-                    </button>
-                    
-                )}
-                 {user && user.uid === blog.userId && (
-                    <Link to={`/edit/${blog.id}`}>
-                     <button className="edit-btn">Edit</button>
+                <div className="blog-footer">
+                    <Link to={`/blog/${blog.id}`} className="read-link">
+                    Read Entry →
                     </Link>
-                    
-                )}
+
+                    <button
+                    className="delete-btn"
+                    onClick={() => handleDelete(blog.id)}
+                    >
+                    Delete
+                    </button>
+
+                    <Link to={`/edit/${blog.id}`}>
+                    <button className="edit-btn">Edit</button>
+                    </Link>
                 </div>
-            </div>
+                </div>
+            ))}
+        </div>
+
+        {/* ✅ OTHER BLOGS */}
+        <h2 className="section-title">Other Blogs</h2>
+        <div className="blog-grid">
+            {blogs
+            .filter((blog) => blog.userId !== user?.uid)
+            .map((blog) => (
+                <div key={blog.id} className="blog-card">
+                <h3 className="blog-title">{blog.title}</h3>
+                <p className="blog-excerpt">
+                    {blog.content.slice(0, 160)}
+                </p>
+
+                <div className="blog-footer">
+                    <Link to={`/blog/${blog.id}`} className="read-link">
+                    Read Entry →
+                    </Link>
+                </div>
+                </div>
             ))}
         </div>
         </div>

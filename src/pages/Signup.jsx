@@ -27,8 +27,12 @@ export default function Signup(){
         return false;
     }
 
-    if (password.length < 6) {
-        toast.error("Password must be at least 6 characters");
+    const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/;
+
+    if (!strongPassword.test(password)) {
+        toast.error(
+        "Password must include uppercase, lowercase, number & special character"
+        );
         return false;
     }
 

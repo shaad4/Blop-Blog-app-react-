@@ -204,3 +204,33 @@
 .btn:disabled:hover {
   transform: none;
 }
+
+
+/*  404 */
+
+.error-card {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 1rem;
+  background: linear-gradient(to bottom, var(--accent), #1e293b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px var(--accent-glow));
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive tweak for small screens */
+@media (max-width: 480px) {
+  .error-code {
+    font-size: 5rem;
+  }
+}

@@ -8,6 +8,8 @@ import AddEditBlog from "./pages/AddEditBlog";
 import BlogDetails from "./pages/BlogDetails";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import Signup from "./pages/Signup";
+import PageNotFound from "./pages/PageNotFound";
+import PublicRoute from "./components/PublicRoute";
 
 function App(){
   const {user, logout} = useAuth();
@@ -18,8 +20,18 @@ function App(){
     
 
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+          
+          } />
+        <Route path="/signup" element={
+          <PublicRoute>
+            <Signup />
+          </PublicRoute>
+          
+          } />
         <Route path="/" element={
           <ProtectedRoute>
              <BLogList />
@@ -42,6 +54,8 @@ function App(){
             <BlogDetails />
           </ProtectedRoute>
           } />
+
+        <Route path="*" element={<PageNotFound />}/>
       </Routes>
 
 

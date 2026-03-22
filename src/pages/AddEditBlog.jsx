@@ -90,6 +90,7 @@ export default function AddEditBlog(){
                     title : title,
                     content : content,
                     userId : user.uid,
+                    authorName: user.displayName,
                     createdAt: new Date(),
                 });
 

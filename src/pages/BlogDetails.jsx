@@ -67,7 +67,7 @@ export default function BlogDetails(){
                 <span className="details-category">Story</span>
                 <h1 className="details-title">{blog.title}</h1>
                 <div className="details-meta">
-                <span className="author-badge">Author ID: {blog.userId?.substring(0, 6)}</span>
+                <span className="author-badge">Author Name: {blog.authorName || "anonymous"}</span>
                 </div>
             </header>
 

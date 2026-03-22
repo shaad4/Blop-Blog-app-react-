@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/ProtectedRoutes";
 import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
 import PublicRoute from "./components/PublicRoute";
+import MyBlogs from "./pages/MyBlogs";
 
 function App(){
   const {user, logout} = useAuth();
@@ -54,6 +55,13 @@ function App(){
             <BlogDetails />
           </ProtectedRoute>
           } />
+
+        <Route path="/myblogs" element={
+          <ProtectedRoute>
+            <MyBlogs />
+          </ProtectedRoute>
+          
+        }/>
 
         <Route path="*" element={<PageNotFound />}/>
       </Routes>
